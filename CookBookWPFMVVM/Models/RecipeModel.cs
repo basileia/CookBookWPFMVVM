@@ -17,7 +17,7 @@ namespace CookBookWPFMVVM.Models
         {
             Name = name;
         }
-
+    
         
     }
 }

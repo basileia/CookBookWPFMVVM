@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CookBookWPFMVVM.Views"
         mc:Ignorable="d"
-        Title="Kuchařka" 
+        Title="The CookBook" FontSize="14"
         Height="{Binding SystemParameters.PrimaryScreenHeight}" 
         Width="{Binding SystemParameters.PrimaryScreenWidth}"
         WindowStartupLocation="CenterScreen">
@@ -26,25 +26,23 @@
             <StackPanel Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" 
                         Orientation="Horizontal" 
                         Background="LightSteelBlue">
-                <Button Content="Vygenerovat jídelníček" 
+                <Button Content="Generate a Menu" 
                         BorderThickness="0" Background="Transparent" 
                         Margin="7, 5, 7, 5" VerticalAlignment="Center"/>
-                <Button Content="Nákupní seznam" BorderThickness="0" 
+                <Button Content="Shopping List" BorderThickness="0" 
                         Background="Transparent" Margin="7, 5, 7, 5" 
                         VerticalAlignment="Center"/>
-                <Button Content="Přidat recept" BorderThickness="0"
+                <Button Content="Add Recipe" BorderThickness="0"
                         x:Name="LoadAddRecipePage"
-                        Background="Transparent" Margin="7,0,7,6" 
+                        Background="Transparent" Margin="7, 5, 7, 5" 
                         VerticalAlignment="Bottom"/>
             </StackPanel>
             
             <!-- Row 1-->
             <ScrollViewer Grid.Row="1" Grid.Column="0" HorizontalScrollBarVisibility="Auto">
-                <ListBox Grid.Row="1" Grid.Column="0" x:Name="Recipes" 
-                      BorderBrush="Gray"
-                      BorderThickness="0.5" Background="White"
+                <ListBox Grid.Row="1" Grid.Column="0" x:Name="Recipes"
                       SelectedItem="{Binding Path=SelectedRecipe, Mode=OneWayToSource }"
-                      DisplayMemberPath="Name"/>
+                      DisplayMemberPath="Name" />
             </ScrollViewer>
 
             <!-- Row 1 -->

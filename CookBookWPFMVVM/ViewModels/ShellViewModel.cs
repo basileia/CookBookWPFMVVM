@@ -13,7 +13,7 @@ namespace CookBookWPFMVVM.ViewModels
 {
     public class ShellViewModel : Conductor<object>
     {
-        private BindableCollection<RecipeModel> _recipes = new BindableCollection<RecipeModel>();
+        private BindableCollection<RecipeModel> _recipes;
         private RecipeModel _selectedRecipe;
 
         public ShellViewModel()
