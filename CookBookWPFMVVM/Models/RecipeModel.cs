@@ -12,6 +12,7 @@ namespace CookBookWPFMVVM.Models
         public int NumberOfServings { get; set; }
         public string Preparation { get; set; }
         public List<IngredientModel> IngredientsList { get; set; } = new List<IngredientModel>();
+        public List<CategoryModel> Categories { get; set; } = new List<CategoryModel>();
 
         public RecipeModel(string name)
         {

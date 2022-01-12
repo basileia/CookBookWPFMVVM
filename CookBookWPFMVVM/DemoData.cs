@@ -16,6 +16,11 @@ namespace CookBookWPFMVVM
 
         string[] ingredientNames = new string[] { "vejce", "mouka" };
         string unit = "ks";
+        Array categories = Enum.GetValues(typeof(CategoryModel));
+        
+
+
+        //CategoryModel category = (CategoryModel) Enum.Parse(typeof(CategoryModel), "Snídaně");
 
         public List<RecipeModel> GetRecipes()
         {
@@ -33,12 +38,18 @@ namespace CookBookWPFMVVM
             RecipeModel output = new RecipeModel(recipeName);
             output.NumberOfServings = rnd.Next(1, 5);
             output.Preparation = preparation;
+            //output.Category = category;
 
             for (int i = 0; i < 2; i++)
             {
                 output.IngredientsList.Add(GetIngredient());
             }
   
+            for (int i = 0; i < 2; i++)
+            {
+                output.Categories.Add(GetCategory());
+            }
+            
             return output;
         }
 
@@ -54,6 +65,13 @@ namespace CookBookWPFMVVM
             output.Quantity = rnd.Next(1, 5);
             output.Unit = unit;
 
+            return output;
+        }
+
+        private CategoryModel GetCategory()
+        {
+            CategoryModel output = new CategoryModel();
+            output = (CategoryModel)categories.GetValue(rnd.Next(categories.Length));
             return output;
         }
 

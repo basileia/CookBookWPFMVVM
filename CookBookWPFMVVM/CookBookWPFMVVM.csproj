@@ -81,6 +81,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DemoData.cs" />
+    <Compile Include="Models\CategoryModel.cs" />
     <Compile Include="Models\IngredientModel.cs" />
     <Compile Include="Models\RecipeModel.cs" />
     <Compile Include="ViewModels\AddRecipeViewModel.cs" />
