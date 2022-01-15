@@ -13,19 +13,16 @@ namespace CookBookWPFMVVM.ViewModels
 {
     public class ShellViewModel : Conductor<object>
     {
-        private BindableCollection<RecipeModel> _recipes;
         private RecipeModel _selectedRecipe;
-
+        public CookBookModel cookBook { get; set; }
+        
         public ShellViewModel()
         {
             DemoData demoData = new DemoData();
-            Recipes = new BindableCollection<RecipeModel>(demoData.GetRecipes());
-        }
-
-        public BindableCollection<RecipeModel> Recipes
-        {
-            get { return _recipes; }
-            set { _recipes = value; }
+            cookBook = new CookBookModel
+            {
+                Recipes = new BindableCollection<RecipeModel>(demoData.GetRecipes())
+            };
         }
 
         public RecipeModel SelectedRecipe
@@ -45,7 +42,7 @@ namespace CookBookWPFMVVM.ViewModels
 
         public void LoadAddRecipePage()
         {
-            ActivateItem(new AddRecipeViewModel());
+            ActivateItem(new AddRecipeViewModel(cookBook));
         }
 
     }

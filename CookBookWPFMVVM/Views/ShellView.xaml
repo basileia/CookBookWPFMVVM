@@ -40,7 +40,7 @@
             
             <!-- Row 1-->
             <ScrollViewer Grid.Row="1" Grid.Column="0" HorizontalScrollBarVisibility="Auto">
-                <ListBox Grid.Row="1" Grid.Column="0" x:Name="Recipes"
+                <ListBox Grid.Row="1" Grid.Column="0" x:Name="cookBook_Recipes"
                       SelectedItem="{Binding Path=SelectedRecipe, Mode=OneWayToSource }"
                       DisplayMemberPath="Name" />
             </ScrollViewer>

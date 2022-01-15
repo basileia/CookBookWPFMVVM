@@ -18,5 +18,7 @@ namespace CookBookWPFMVVM.ViewModels
             CategoriesString = string.Join(", ", recipe.Categories.ConvertAll(f => f.ToString()));
         }
     }
+
+
 }
 
