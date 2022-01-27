@@ -3,6 +3,7 @@ using CookBookWPFMVVM.Models;
 using CookBookWPFMVVM.Views;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,17 +14,33 @@ namespace CookBookWPFMVVM.ViewModels
     public class AddRecipeViewModel : Screen
     {
         CookBookModel cookBook = new CookBookModel();
+        private string _name;
+
+        public string Name
+        {
+            get { return _name; }
+            set 
+            {
+                _name = value;
+                NotifyOfPropertyChange(() => Name);
+            }
+        }
+
+        public int NumberOfServings { get; set; }
+        public string Preparation { get; set; }
+
         public AddRecipeViewModel(CookBookModel cookbook)
         {
             cookBook = cookbook;
         }
 
-        public void AddRecipe()  //AddRecipe_Click(object sender, RoutedEventArgs e)
+        public void AddRecipe()
         {
-            //string name = nameTextBox.Name;
-            cookBook.AddRecipeToCookBook("Polévka");
-
+            if (AuxiliaryMethod.ValidString(Name) && AuxiliaryMethod.ValidUserNumber(NumberOfServings) && AuxiliaryMethod.ValidString(Preparation))
+            {
+                cookBook.AddRecipeToCookBook(Name, NumberOfServings, Preparation);
+                Name = "";
+            }
         }
-
     }
 }

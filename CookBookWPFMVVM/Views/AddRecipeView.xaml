@@ -25,11 +25,27 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <Label Content="_Name: " Grid.Column="0" Grid.Row="0" 
-               Target="{Binding ElementName=nameTextBox}" Margin="0, 0, 0, 10"/>
-        <TextBox Name="nameTextBox" Grid.Row="0" Grid.Column="1" MinWidth="300" Margin="0, 0, 0, 10"/>
+        <!-- Row 0 -->
+        <TextBlock Text="Name: " Grid.Column="0" Grid.Row="0" 
+               Margin="0, 0, 0, 10"/>
+        <TextBox x:Name="Name" Grid.Row="0" Grid.Column="1" Width="500" Margin="0, 0, 0, 10"/>
 
-        <Button x:Name="AddRecipe" Content="Submit" Grid.Column="0" Grid.Row="3"/>
+        <!-- Row 1 -->
+        <TextBlock Text="Number of servings: " Grid.Column="0" Grid.Row="1"
+                   Margin="0, 0, 0, 10" />
+        <TextBox x:Name="NumberOfServings" Grid.Row="1" Grid.Column="1" Width="500" 
+                   Margin="0, 0, 0, 10" />
+        
+        <!-- Row 2 -->
+        <TextBlock Text="Preparation: " Grid.Row="2" Grid.Column="0" Margin="0, 0, 0, 10" />
+        <TextBox x:Name="Preparation" Grid.Row="2" Grid.Column="1" Margin="0, 0, 0, 10" 
+                 Width="500" TextWrapping="Wrap" AcceptsReturn="True" />
+
+        
+        
+        
+        <!-- Row 5 -->
+        <Button x:Name="AddRecipe" Content="Submit" Grid.Column="0" Grid.Row="5"/>
 
     </Grid>
 </UserControl>
