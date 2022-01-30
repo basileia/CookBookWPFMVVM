@@ -3,11 +3,10 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:CookBookWPFMVVM.Views"
-        mc:Ignorable="d"
+        xmlns:local="clr-namespace:CookBookWPFMVVM.Views" 
+        Width="{Binding Source={x:Static SystemParameters.PrimaryScreenWidth}}"
+        Height="{Binding Source={x:Static SystemParameters.PrimaryScreenHeight}}"
         Title="The CookBook" FontSize="14"
-        Height="{Binding SystemParameters.PrimaryScreenHeight}" 
-        Width="{Binding SystemParameters.PrimaryScreenWidth}"
         WindowStartupLocation="CenterScreen">
 
     <Border BorderBrush="Gray" BorderThickness="0, 1, 0, 0">

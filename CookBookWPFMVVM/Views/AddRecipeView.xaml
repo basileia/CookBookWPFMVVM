@@ -36,16 +36,36 @@
         <TextBox x:Name="NumberOfServings" Grid.Row="1" Grid.Column="1" Width="500" 
                    Margin="0, 0, 0, 10" />
         
-        <!-- Row 2 -->
-        <TextBlock Text="Preparation: " Grid.Row="2" Grid.Column="0" Margin="0, 0, 0, 10" />
-        <TextBox x:Name="Preparation" Grid.Row="2" Grid.Column="1" Margin="0, 0, 0, 10" 
+        <!--Row 2 -->
+        <TextBlock Text="Ingredients: " Grid.Column="0" Grid.Row="2" Margin="0, 0, 0, 10" />
+        <ItemsControl x:Name="Ingredients" Grid.Row="2" Grid.Column="1">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Margin="10, 0, 0, 0">
+                                <Run Text="{Binding Name}" />
+                                <Run Text="{Binding Quantity}" />
+                                <Run Text="{Binding Unit}" />
+                        </TextBlock>
+                    </StackPanel>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+        <Button x:Name="AddIngredientWindow" Content="Add Ingredient" Grid.Column="1" Grid.Row="2"
+                Margin="0, 0, 0, 10" Width="100"/>
+
+        <!-- Row 3 -->
+        <TextBlock Text="Preparation: " Grid.Row="3" Grid.Column="0" Margin="0, 0, 0, 10" />
+        <TextBox x:Name="Preparation" Grid.Row="3" Grid.Column="1" Margin="0, 0, 0, 10" 
                  Width="500" TextWrapping="Wrap" AcceptsReturn="True" />
+        
+        
 
         
         
         
         <!-- Row 5 -->
-        <Button x:Name="AddRecipe" Content="Submit" Grid.Column="0" Grid.Row="5"/>
+        <Button x:Name="AddRecipe" Content="Save" Grid.Column="0" Grid.Row="5"/>
 
     </Grid>
 </UserControl>

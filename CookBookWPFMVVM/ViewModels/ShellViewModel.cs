@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
+
 namespace CookBookWPFMVVM.ViewModels
 {
     public class ShellViewModel : Conductor<object>
@@ -44,6 +45,8 @@ namespace CookBookWPFMVVM.ViewModels
         {
             ActivateItem(new AddRecipeViewModel(cookBook));
         }
+
+        
 
     }
 }

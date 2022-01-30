@@ -26,8 +26,35 @@ namespace CookBookWPFMVVM.ViewModels
             }
         }
 
-        public int NumberOfServings { get; set; }
-        public string Preparation { get; set; }
+        private int _numberOfServings;
+
+        public int NumberOfServings
+        {
+            get { return _numberOfServings; }
+            set 
+            { 
+                _numberOfServings = value;
+                NotifyOfPropertyChange(() => NumberOfServings);
+            }
+        }
+                
+        private string _preparation;
+
+        public string Preparation
+        {
+            get { return _preparation; }
+            set 
+            { 
+                _preparation = value;
+                NotifyOfPropertyChange(() => Preparation);
+            }
+        }
+
+        readonly IWindowManager manager = new WindowManager();
+        public void AddIngredientWindow()
+        {
+            manager.ShowWindow(new AddIngredientViewModel(), null, null);
+        }
 
         public AddRecipeViewModel(CookBookModel cookbook)
         {
@@ -40,6 +67,8 @@ namespace CookBookWPFMVVM.ViewModels
             {
                 cookBook.AddRecipeToCookBook(Name, NumberOfServings, Preparation);
                 Name = "";
+                Preparation = "";
+                NumberOfServings = 0;
             }
         }
     }

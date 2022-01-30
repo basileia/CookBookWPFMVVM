@@ -86,9 +86,13 @@
     <Compile Include="Models\CookBookModel.cs" />
     <Compile Include="Models\IngredientModel.cs" />
     <Compile Include="Models\RecipeModel.cs" />
+    <Compile Include="ViewModels\AddIngredientViewModel.cs" />
     <Compile Include="ViewModels\AddRecipeViewModel.cs" />
     <Compile Include="ViewModels\RecipeViewModel.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />
+    <Compile Include="Views\AddIngredientView.xaml.cs">
+      <DependentUpon>AddIngredientView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\AddRecipeView.xaml.cs">
       <DependentUpon>AddRecipeView.xaml</DependentUpon>
     </Compile>
@@ -131,6 +135,10 @@
     <Resource Include="search.png" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Views\AddIngredientView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\AddRecipeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
