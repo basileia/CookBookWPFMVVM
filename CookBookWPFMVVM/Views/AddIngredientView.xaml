@@ -4,9 +4,59 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:CookBookWPFMVVM.Views"
-             mc:Ignorable="d" Height="600" Width="800"
+             mc:Ignorable="d" Height="100" Width="500"
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+    <Border BorderBrush="Gray" BorderThickness="0, 1, 0, 0">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="10"/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <!-- Row 0 -->
+            <StackPanel Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="7" 
+                        Orientation="Horizontal" 
+                        Background="LightSteelBlue">
+                <TextBlock Text="Add Ingredient" 
+                        Margin="7, 5, 7, 5" VerticalAlignment="Center"/>
+            </StackPanel>
+
+            <!-- Row 2 -->
+            <StackPanel Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="7" 
+                        Orientation="Horizontal" HorizontalAlignment="Center"
+                        VerticalAlignment="Center">
+                <TextBlock Text="Name: " 
+                   Margin="10, 0, 0, 10"/>
+                <TextBox x:Name="Name" Width="200" 
+                     Margin="0, 0, 0, 10"/>
+                <TextBlock Text="Quantity: "  
+                       Margin="10, 0, 0, 10" />
+                <TextBox x:Name="Quantity"  Width="50"
+                     Margin="0, 0, 0, 10" />
+                <TextBlock Text="Unit: " 
+                       Margin="10, 0, 0, 10" />
+                <TextBox x:Name="Unit" Width="50"
+                     Margin="0, 0, 0, 10"/>
+            </StackPanel>
             
-    </Grid>
+            <!-- Row 3 -->
+            <Button Content="Save" x:Name="AddIngredient"
+                    Grid.Row="3" Grid.ColumnSpan="7" HorizontalAlignment="Center"
+                    Width="60" Margin="0, 0, 0, 10" Grid.RowSpan="2" />
+
+        </Grid>
+    </Border>
 </UserControl>

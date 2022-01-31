@@ -34,7 +34,7 @@
         <TextBlock Text="Number of servings: " Grid.Column="0" Grid.Row="1"
                    Margin="0, 0, 0, 10" />
         <TextBox x:Name="NumberOfServings" Grid.Row="1" Grid.Column="1" Width="500" 
-                   Margin="0, 0, 0, 10" />
+                   Margin="0, 0, 0, 10"/>
         
         <!--Row 2 -->
         <TextBlock Text="Ingredients: " Grid.Column="0" Grid.Row="2" Margin="0, 0, 0, 10" />

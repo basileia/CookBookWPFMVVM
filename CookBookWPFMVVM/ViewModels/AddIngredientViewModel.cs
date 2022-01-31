@@ -8,6 +8,6 @@ namespace CookBookWPFMVVM.ViewModels
 {
     class AddIngredientViewModel
     {
-
+        
     }
 }

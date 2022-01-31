@@ -6,8 +6,10 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
 
 namespace CookBookWPFMVVM.ViewModels
 {
@@ -71,5 +73,7 @@ namespace CookBookWPFMVVM.ViewModels
                 NumberOfServings = 0;
             }
         }
+
+ 
     }
 }
