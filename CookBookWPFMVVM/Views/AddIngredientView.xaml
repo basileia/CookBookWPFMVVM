@@ -44,7 +44,7 @@
                      Margin="0, 0, 0, 10"/>
                 <TextBlock Text="Quantity: "  
                        Margin="10, 0, 0, 10" />
-                <TextBox x:Name="Quantity"  Width="50"
+                <TextBox Text="{Binding Quantity, StringFormat=0.0;;#}"  Width="50"
                      Margin="0, 0, 0, 10" />
                 <TextBlock Text="Unit: " 
                        Margin="10, 0, 0, 10" />
@@ -53,9 +53,15 @@
             </StackPanel>
             
             <!-- Row 3 -->
-            <Button Content="Save" x:Name="AddIngredient"
+            <Button Content="Save" x:Name="AddIngredientToList"
                     Grid.Row="3" Grid.ColumnSpan="7" HorizontalAlignment="Center"
-                    Width="60" Margin="0, 0, 0, 10" Grid.RowSpan="2" />
+                    Width="85" Margin="0, 0, 0, 10" Grid.RowSpan="2">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
 
         </Grid>
     </Border>

@@ -10,12 +10,21 @@ namespace CookBookWPFMVVM
 {
     public class AuxiliaryMethod
     {
-        public static bool ValidUserNumber(int number)
+        public static bool ValidUserNumber(double number)
         {
             
             if (number <= 0)
             {
-                MessageBox.Show("The number must be greater than zero");
+                if (number % 1 == 0)
+                {
+                    MessageBox.Show("The number must be an integer greater than zero");
+                }
+
+                else
+                {
+                    MessageBox.Show("The number must be greater than zero");
+                }
+                
                 return false;
             }
             return true;
@@ -31,6 +40,6 @@ namespace CookBookWPFMVVM
             return true;
         }
 
-  
+    
     }
 }

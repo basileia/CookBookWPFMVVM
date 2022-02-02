@@ -20,18 +20,7 @@ namespace CookBookWPFMVVM.Models
             Name = name;
         }
 
-        public void AddIngredientToRecipe(string name, int quantity, string unit)
-        {
-            IngredientModel ingredient = new IngredientModel()
-            {
-                Name = name,
-                Quantity = quantity,
-                Unit = unit
-            };
-
-            IngredientsList.Add(ingredient);
-        }
-    
+          
         
     }
 }

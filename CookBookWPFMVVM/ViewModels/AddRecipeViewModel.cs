@@ -52,10 +52,24 @@ namespace CookBookWPFMVVM.ViewModels
             }
         }
 
+        private BindableCollection<IngredientModel> _ingredients = new BindableCollection<IngredientModel>();
+
+        public BindableCollection<IngredientModel> Ingredients
+        {
+            get { return  _ingredients; }
+            set 
+            {
+                if (Equals(value, _ingredients)) return;
+                _ingredients = value;
+                NotifyOfPropertyChange(() => Ingredients);
+            }
+        }
+
+
         readonly IWindowManager manager = new WindowManager();
         public void AddIngredientWindow()
         {
-            manager.ShowWindow(new AddIngredientViewModel(), null, null);
+            manager.ShowWindow(new AddIngredientViewModel(Ingredients), null, null);
         }
 
         public AddRecipeViewModel(CookBookModel cookbook)
@@ -67,10 +81,11 @@ namespace CookBookWPFMVVM.ViewModels
         {
             if (AuxiliaryMethod.ValidString(Name) && AuxiliaryMethod.ValidUserNumber(NumberOfServings) && AuxiliaryMethod.ValidString(Preparation))
             {
-                cookBook.AddRecipeToCookBook(Name, NumberOfServings, Preparation);
+                cookBook.AddRecipeToCookBook(Name, NumberOfServings, Preparation, Ingredients);
                 Name = "";
                 Preparation = "";
                 NumberOfServings = 0;
+                Ingredients = new BindableCollection<IngredientModel>();
             }
         }
 
