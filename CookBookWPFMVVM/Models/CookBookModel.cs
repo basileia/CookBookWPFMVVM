@@ -29,14 +29,15 @@ namespace CookBookWPFMVVM.Models
         //    Recipes.Add(recipe);
         //}
 
-        public void AddRecipeToCookBook(string name, int numberOfServings, string preparation, BindableCollection<IngredientModel> ingredients)
+        public void AddRecipeToCookBook(string name, int numberOfServings, string preparation, BindableCollection<IngredientModel> ingredients, BindableCollection<string> categories)
         {
-         
+
             RecipeModel recipe = new RecipeModel(name)
             {
                 NumberOfServings = numberOfServings,
                 Preparation = preparation,
                 IngredientsList = ingredients,
+                Categories = categories,
             };
 
             Recipes.Add(recipe);

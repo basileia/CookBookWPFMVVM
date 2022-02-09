@@ -65,7 +65,19 @@
         <TextBox x:Name="Preparation" Grid.Row="3" Grid.Column="1" Margin="10, 0, 0, 10" 
                  Width="500" TextWrapping="Wrap" AcceptsReturn="True" />
 
+        <!-- Row 4 -->
+        <TextBlock Text="Categories: " Grid.Row="4" Grid.Column="0" Margin="0, 0, 0, 10" />
 
+        <StackPanel Grid.Row="4" Grid.Column="1" Margin="10, 0, 0, 10" Orientation="Horizontal">
+            <ListBox Width="245" HorizontalAlignment="Left" 
+                 SelectedItem="{Binding SelectedCategory}"
+                 x:Name="AllCategories" >
+            </ListBox>
+            <ListBox Width="245" Margin="10, 0, 0, 0" x:Name="Categories"
+                     SelectedItem="{Binding SelectedCategoryToRemove}">
+            </ListBox>
+        </StackPanel>
+         
         <!-- Row 5 -->
         <Button x:Name="AddRecipe" Content="Save" Grid.Column="0" Grid.Row="5"
                 Width="110">

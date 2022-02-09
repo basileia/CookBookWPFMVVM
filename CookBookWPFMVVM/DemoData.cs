@@ -68,11 +68,11 @@ namespace CookBookWPFMVVM
             return output;
         }
 
-        private CategoryModel GetCategory()
+        private string GetCategory()
         {
             CategoryModel output = new CategoryModel();
             output = (CategoryModel)categories.GetValue(rnd.Next(categories.Length));
-            return output;
+            return output.ToString();
         }
 
     }
