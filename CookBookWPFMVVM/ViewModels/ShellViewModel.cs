@@ -14,16 +14,16 @@ namespace CookBookWPFMVVM.ViewModels
 {
     public class ShellViewModel : Conductor<object>
     {
+        public static string sourceDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "CookBook");
+        public static string sourceFile = Path.Combine(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "CookBook"), "recipes.json");
+        
         private RecipeModel _selectedRecipe;
         public CookBookModel cookBook { get; set; }
         
         public ShellViewModel()
         {
-            DemoData demoData = new DemoData();
-            cookBook = new CookBookModel
-            {
-                Recipes = new BindableCollection<RecipeModel>(demoData.GetRecipes())
-            };
+            cookBook = new CookBookModel();
+            cookBook.Recipes = CookBookModel.LoadRecipesFromJson(sourceFile);
         }
 
         public RecipeModel SelectedRecipe
@@ -47,6 +47,7 @@ namespace CookBookWPFMVVM.ViewModels
         }
 
         
+
 
     }
 }

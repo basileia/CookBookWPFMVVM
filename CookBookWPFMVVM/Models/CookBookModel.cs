@@ -1,6 +1,8 @@
 ﻿using Caliburn.Micro;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,19 +18,6 @@ namespace CookBookWPFMVVM.Models
             
         }
         
-        //public void AddRecipeToCookBook(string name, int numberOfervings, string preparation, List<IngredientModel> ingredients, List<CategoryModel> categories)
-        //{
-        //    RecipeModel recipe = new RecipeModel(name)
-        //    {
-        //        NumberOfServings = numberOfervings,
-        //        Preparation = preparation,
-        //        Categories = categories,
-        //        IngredientsList = ingredients
-        //    };
-
-        //    Recipes.Add(recipe);
-        //}
-
         public void AddRecipeToCookBook(string name, int numberOfServings, string preparation, BindableCollection<IngredientModel> ingredients, BindableCollection<string> categories)
         {
 
@@ -42,5 +31,37 @@ namespace CookBookWPFMVVM.Models
 
             Recipes.Add(recipe);
         }
+
+        public static BindableCollection<RecipeModel> LoadRecipesFromJson(string filePath)
+        {
+            if (File.Exists(filePath))
+            {
+                var fileContent = File.ReadAllText(filePath);
+                List<RecipeModel> recipesList = JsonConvert.DeserializeObject<List<RecipeModel>>(fileContent);
+                BindableCollection<RecipeModel> recipes = new BindableCollection<RecipeModel>();
+                recipesList.ForEach(x => recipes.Add(x));
+                return recipes;
+            }
+            return new BindableCollection<RecipeModel>();
+            
+        }
+
+        public static void PutRecipesToJson(CookBookModel cookbook, string sourceDirectory, string filePath)
+        {
+            AuxiliaryMethod.CreateDirectory(sourceDirectory);
+            if (cookbook.Recipes.Any() || File.Exists(filePath))
+            {
+                using (StreamWriter file = File.CreateText(filePath))
+                {
+                    JsonSerializer serializer = new JsonSerializer
+                    {
+                        Formatting = Formatting.Indented
+                    };
+                    serializer.Serialize(file, cookbook.Recipes);
+                }
+            }
+        }
+
+
     }
 }

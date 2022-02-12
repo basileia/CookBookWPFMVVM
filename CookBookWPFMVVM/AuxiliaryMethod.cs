@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -40,6 +41,14 @@ namespace CookBookWPFMVVM
             return true;
         }
 
-    
+        public static void CreateDirectory(string sourceDirectory)
+        {
+            if (!Directory.Exists(sourceDirectory))
+            {
+                Directory.CreateDirectory(sourceDirectory);
+            }
+        }
+
+
     }
 }

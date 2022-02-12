@@ -1,6 +1,7 @@
 ﻿using Caliburn.Micro;
 using CookBookWPFMVVM.Models;
 using System;
+using System.IO;
 using System.Linq;
 using System.Windows;
 
@@ -8,6 +9,7 @@ namespace CookBookWPFMVVM.ViewModels
 {
     public class AddRecipeViewModel : Screen
     {
+        
         CookBookModel cookBook = new CookBookModel();
         readonly IWindowManager manager = new WindowManager();
         public AddRecipeViewModel(CookBookModel cookbook)
@@ -113,6 +115,7 @@ namespace CookBookWPFMVVM.ViewModels
                 else
                 {
                     cookBook.AddRecipeToCookBook(Name, NumberOfServings, Preparation, Ingredients, Categories);
+                    CookBookModel.PutRecipesToJson(cookBook, ShellViewModel.sourceDirectory, ShellViewModel.sourceFile);
 
                     Name = "";
                     Preparation = "";
@@ -120,6 +123,7 @@ namespace CookBookWPFMVVM.ViewModels
                     Ingredients = new BindableCollection<IngredientModel>();
                     Categories = new BindableCollection<string>();
                 }
+                
             }
         }
 
