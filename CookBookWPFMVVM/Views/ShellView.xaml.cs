@@ -23,5 +23,10 @@ namespace CookBookWPFMVVM.Views
         {
             InitializeComponent();
         }
+
+        private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }

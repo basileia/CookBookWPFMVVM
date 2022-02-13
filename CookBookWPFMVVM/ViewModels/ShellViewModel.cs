@@ -15,7 +15,7 @@ namespace CookBookWPFMVVM.ViewModels
     public class ShellViewModel : Conductor<object>
     {
         public static string sourceDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "CookBook");
-        public static string sourceFile = Path.Combine(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "CookBook"), "recipes.json");
+        public static string sourceFile = Path.Combine(sourceDirectory, "recipes.json");
         
         private RecipeModel _selectedRecipe;
         public CookBookModel cookBook { get; set; }
@@ -41,9 +41,16 @@ namespace CookBookWPFMVVM.ViewModels
             }
         }
 
+        // po najetí ActivateItem - zobrazit všechny recepty. Udělat Control Content. Po kliknutí na tlačítko Search, ukázat jen recepty s ingrediencemi
+
         public void LoadAddRecipePage()
         {
             ActivateItem(new AddRecipeViewModel(cookBook));
+        }
+
+        public void SearchRecipesByIngredient()
+        {
+
         }
 
         

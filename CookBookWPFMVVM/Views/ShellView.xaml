@@ -34,9 +34,30 @@
                 <Button Content="Add Recipe" BorderThickness="0"
                         x:Name="LoadAddRecipePage"
                         Background="Transparent" Margin="7, 5, 7, 5" 
-                        VerticalAlignment="Bottom"/>
+                        VerticalAlignment="Center"/>
             </StackPanel>
-            
+
+            <StackPanel Grid.Column="1" Grid.Row="0" Orientation="Horizontal" 
+                        HorizontalAlignment="Right">
+                <TextBlock Grid.Column="1" Grid.Row="0" HorizontalAlignment="Right" 
+                           Text="Search by Ingredient" VerticalAlignment="Center" Margin="0, 0, 10, 0"/>
+                <Border Grid.Column="1" Grid.Row="0" Background="White"
+                BorderThickness="0"
+                VerticalAlignment="Center"
+                CornerRadius="5"
+                HorizontalAlignment="Right"
+                Margin="5">
+                    <StackPanel Margin="2" Orientation="Horizontal" >
+
+                        <TextBox Width="170" BorderThickness="0"/>
+                        <Button Height="18" Margin="3, 0, 0, 0" BorderThickness="0" Background="White">
+                            <Image Source="Images/search.png" />
+                        </Button>
+                        
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+
             <!-- Row 1-->
             <ScrollViewer Grid.Row="1" Grid.Column="0" HorizontalScrollBarVisibility="Auto">
                 <ListBox Grid.Row="1" Grid.Column="0" x:Name="cookBook_Recipes"
