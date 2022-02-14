@@ -49,8 +49,9 @@
                 Margin="5">
                     <StackPanel Margin="2" Orientation="Horizontal" >
 
-                        <TextBox Width="170" BorderThickness="0"/>
-                        <Button Height="18" Margin="3, 0, 0, 0" BorderThickness="0" Background="White">
+                        <TextBox Width="170" BorderThickness="0" x:Name="SearchedIngredient"/>
+                        <Button Height="18" Margin="3, 0, 0, 0" BorderThickness="0" Background="White"
+                                x:Name="LoadRecipes">
                             <Image Source="Images/search.png" />
                         </Button>
                         
@@ -60,7 +61,7 @@
 
             <!-- Row 1-->
             <ScrollViewer Grid.Row="1" Grid.Column="0" HorizontalScrollBarVisibility="Auto">
-                <ListBox Grid.Row="1" Grid.Column="0" x:Name="cookBook_Recipes"
+                <ListBox Grid.Row="1" Grid.Column="0" x:Name="RecipesToShow"
                       SelectedItem="{Binding Path=SelectedRecipe, Mode=OneWayToSource }"
                       DisplayMemberPath="Name" />
             </ScrollViewer>
