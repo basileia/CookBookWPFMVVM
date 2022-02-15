@@ -62,6 +62,20 @@ namespace CookBookWPFMVVM.Models
             }
         }
 
-
+        public BindableCollection<RecipeModel> SearchRecipesByIngredient(CookBookModel cookbook, string searchedIngredient)
+        {
+            BindableCollection<RecipeModel> recipes = new BindableCollection<RecipeModel>();
+            foreach (RecipeModel recipe in cookbook.Recipes)
+            {
+                foreach (IngredientModel ingredient in recipe.IngredientsList)
+                {
+                    if (ingredient.Name.ToLower() == searchedIngredient.ToLower())
+                    {
+                        recipes.Add(recipe);
+                    }
+                }
+            }
+            return recipes;
+        }
     }
 }

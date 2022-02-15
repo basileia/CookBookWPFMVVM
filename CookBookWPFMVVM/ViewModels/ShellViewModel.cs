@@ -15,6 +15,25 @@ namespace CookBookWPFMVVM.ViewModels
 
         private readonly IWindowManager window = new WindowManager();
 
+        public BindableCollection<string> SearchOptions
+        {
+            get
+            {
+                return new BindableCollection<string> { "Ingredient", "Category" };
+            }
+        }
+
+        private string _selectedSearchOption;
+        public string SelectedSearchOption
+        {
+            get { return _selectedSearchOption; }
+            set
+            {
+                _selectedSearchOption = value;
+                NotifyOfPropertyChange(() => SelectedSearchOption);
+            }
+        }
+
 
         public CookBookModel cookBook { get; set; }
         private string _searchedIngredient;
@@ -61,55 +80,32 @@ namespace CookBookWPFMVVM.ViewModels
         {
             cookBook = new CookBookModel();
             cookBook.Recipes = CookBookModel.LoadRecipesFromJson(sourceFile);
-            LoadRecipes(1);
+            LoadAllRecipes();
         }
 
         public void LoadAddRecipePage()
         {
             ActivateItem(new AddRecipeViewModel(cookBook));
         }
-        public BindableCollection<RecipeModel> SearchRecipesByIngredient()
+       
+        public void LoadRecipesByIngredient()
         {
-            BindableCollection<RecipeModel> recipes = new BindableCollection<RecipeModel>();
-            foreach (RecipeModel recipe in  cookBook.Recipes)
-            {
-                foreach (IngredientModel ingredient in recipe.IngredientsList)
-                {
-                    if (ingredient.Name.ToLower() == SearchedIngredient.ToLower())
-                    {
-                        recipes.Add(recipe);
-                    }
-                }
-            }
+            RecipesToShow = cookBook.SearchRecipesByIngredient(cookBook, SearchedIngredient);
             
-            if (recipes.Any())
-            {               
-                return recipes;
-            }
-            else
+            if (!RecipesToShow.Any())
             {
                 MessageBox.Show("There is no recipe for this ingredient");
-            }
-
-            return cookBook.Recipes;
-        }
-
-        public void LoadRecipes(int i = 0)
-        {
-            if (i == 1)
-            {
                 RecipesToShow = cookBook.Recipes;
             }
-            else
-            {
-                RecipesToShow = SearchRecipesByIngredient();
-                SearchedIngredient = "";
-            }
-            
+            SearchedIngredient = "";
         }
         
-        // Button for show all recipes
-        // comboBox search by ingredient/category ?
+        public void LoadAllRecipes()
+        {
+            RecipesToShow = cookBook.Recipes;
+        }
+
+        // search by selectedSearchOption
 
     }
 }

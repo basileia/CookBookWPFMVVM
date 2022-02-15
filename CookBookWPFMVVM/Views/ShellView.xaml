@@ -25,6 +25,9 @@
             <StackPanel Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" 
                         Orientation="Horizontal" 
                         Background="LightSteelBlue">
+                <Button Content="All Recipes" x:Name="LoadAllRecipes"
+                        BorderThickness="0" Background="Transparent" 
+                        Margin="7, 5, 7, 5" VerticalAlignment="Center"/>
                 <Button Content="Generate a Menu" 
                         BorderThickness="0" Background="Transparent" 
                         Margin="7, 5, 7, 5" VerticalAlignment="Center"/>
@@ -39,8 +42,17 @@
 
             <StackPanel Grid.Column="1" Grid.Row="0" Orientation="Horizontal" 
                         HorizontalAlignment="Right">
-                <TextBlock Grid.Column="1" Grid.Row="0" HorizontalAlignment="Right" 
-                           Text="Search by Ingredient" VerticalAlignment="Center" Margin="0, 0, 10, 0"/>
+
+                <Border Grid.Column="1" Grid.Row="0" CornerRadius="5" Background="White"
+                        BorderThickness="0" VerticalAlignment="Center" 
+                        HorizontalAlignment="Right">
+                    <StackPanel Orientation="Horizontal" Margin="10, 0, 2, 0">
+                    <TextBlock  Text="Search by " VerticalAlignment="Center" />
+                        <ComboBox x:Name="SearchOptions" SelectedItem="SelectedSearchOption" 
+                                  BorderThickness="0"/>
+                    </StackPanel>
+                </Border>
+
                 <Border Grid.Column="1" Grid.Row="0" Background="White"
                 BorderThickness="0"
                 VerticalAlignment="Center"
@@ -48,10 +60,9 @@
                 HorizontalAlignment="Right"
                 Margin="5">
                     <StackPanel Margin="2" Orientation="Horizontal" >
-
                         <TextBox Width="170" BorderThickness="0" x:Name="SearchedIngredient"/>
                         <Button Height="18" Margin="3, 0, 0, 0" BorderThickness="0" Background="White"
-                                x:Name="LoadRecipes">
+                                x:Name="LoadRecipesByIngredient">
                             <Image Source="Images/search.png" />
                         </Button>
                         
