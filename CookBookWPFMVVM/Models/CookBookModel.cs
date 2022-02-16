@@ -77,5 +77,13 @@ namespace CookBookWPFMVVM.Models
             }
             return recipes;
         }
+
+        public BindableCollection<RecipeModel> FindRecipesByCategory(string category)
+        {
+            category = category.ToLower();
+            category = char.ToUpper(category[0]) + category.Substring(1);
+            return new BindableCollection<RecipeModel>(Recipes.Where(x => x.Categories.Contains(category)).ToList());
+        }
+
     }
 }

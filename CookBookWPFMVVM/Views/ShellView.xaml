@@ -60,9 +60,9 @@
                 HorizontalAlignment="Right"
                 Margin="5">
                     <StackPanel Margin="2" Orientation="Horizontal" >
-                        <TextBox Width="170" BorderThickness="0" x:Name="SearchedIngredient"/>
+                        <TextBox Width="170" BorderThickness="0" x:Name="SearchedItem"/>
                         <Button Height="18" Margin="3, 0, 0, 0" BorderThickness="0" Background="White"
-                                x:Name="LoadRecipesByIngredient">
+                                x:Name="LoadRecipesBySearchedOption">
                             <Image Source="Images/search.png" />
                         </Button>
                         

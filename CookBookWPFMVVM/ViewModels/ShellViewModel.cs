@@ -13,8 +13,6 @@ namespace CookBookWPFMVVM.ViewModels
         public static string sourceDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "CookBook");
         public static string sourceFile = Path.Combine(sourceDirectory, "recipes.json");
 
-        private readonly IWindowManager window = new WindowManager();
-
         public BindableCollection<string> SearchOptions
         {
             get
@@ -34,17 +32,16 @@ namespace CookBookWPFMVVM.ViewModels
             }
         }
 
-
         public CookBookModel cookBook { get; set; }
-        private string _searchedIngredient;
+        private string _searchedItem;
 
-        public string SearchedIngredient
+        public string SearchedItem
         {
-            get { return _searchedIngredient; }
+            get { return _searchedItem; }
             set 
             { 
-                _searchedIngredient = value;
-                NotifyOfPropertyChange(() => SearchedIngredient);
+                _searchedItem = value;
+                NotifyOfPropertyChange(() => SearchedItem);
             }
         }
 
@@ -88,24 +85,39 @@ namespace CookBookWPFMVVM.ViewModels
             ActivateItem(new AddRecipeViewModel(cookBook));
         }
        
-        public void LoadRecipesByIngredient()
+        public void LoadRecipesBySearchedOption()
         {
-            RecipesToShow = cookBook.SearchRecipesByIngredient(cookBook, SearchedIngredient);
-            
-            if (!RecipesToShow.Any())
+            if (SelectedSearchOption == "Ingredient")
             {
-                MessageBox.Show("There is no recipe for this ingredient");
-                RecipesToShow = cookBook.Recipes;
+                
+                RecipesToShow = cookBook.SearchRecipesByIngredient(cookBook, SearchedItem);
+                
+                if (!RecipesToShow.Any())
+                {
+                    MessageBox.Show("There is no recipe for this ingredient");
+                    RecipesToShow = cookBook.Recipes;
+                }
             }
-            SearchedIngredient = "";
+            else if (SelectedSearchOption == "Category")
+            {
+                RecipesToShow = cookBook.FindRecipesByCategory(SearchedItem);
+                if (!RecipesToShow.Any())
+                {
+                    MessageBox.Show("There is no recipe for this category");
+                    RecipesToShow = cookBook.Recipes;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please choose searched option");
+            }
+            SearchedItem = "";
         }
         
         public void LoadAllRecipes()
         {
             RecipesToShow = cookBook.Recipes;
         }
-
-        // search by selectedSearchOption
 
     }
 }
