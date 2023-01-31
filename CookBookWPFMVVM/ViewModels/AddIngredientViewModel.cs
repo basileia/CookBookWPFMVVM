@@ -14,7 +14,7 @@ namespace CookBookWPFMVVM.ViewModels
         public double Quantity { get; set; }
         public string Unit { get; set; }
 
-        BindableCollection<IngredientModel> Ingredients = new BindableCollection<IngredientModel>();
+        readonly BindableCollection<IngredientModel> Ingredients = new BindableCollection<IngredientModel>();
         public AddIngredientViewModel(BindableCollection<IngredientModel> ingredients)
         {
             Ingredients = ingredients;
