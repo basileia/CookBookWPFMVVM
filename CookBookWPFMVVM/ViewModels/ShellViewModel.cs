@@ -116,8 +116,18 @@ namespace CookBookWPFMVVM.ViewModels
         
         public void LoadAllRecipes()
         {
-            List<RecipeModel> RecipesToShowList = new List<RecipeModel>(cookBook.Recipes).OrderBy(x => x.Name).ToList();
-            RecipesToShow = new BindableCollection<RecipeModel>(RecipesToShowList);
+            RecipesToShow = SortRecipes(cookBook.Recipes);
+
         }
+
+        private static BindableCollection<RecipeModel> SortRecipes(BindableCollection<RecipeModel> recipesToSort)
+        {
+            BindableCollection<RecipeModel> temp;
+            temp = new BindableCollection<RecipeModel>(recipesToSort.OrderBy(p => p.Name));
+            recipesToSort.Clear();
+            foreach (RecipeModel j in temp) recipesToSort.Add(j);
+            return recipesToSort;
+        }
+
     }
 }
