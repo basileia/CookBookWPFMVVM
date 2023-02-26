@@ -84,6 +84,11 @@ namespace CookBookWPFMVVM.ViewModels
         {
             ActivateItem(new AddRecipeViewModel(cookBook));
         }
+
+        public void LoadGenerateMenuPage()
+        {
+            ActivateItem(new GenerateMenuViewModel(cookBook));
+        }
        
         public void LoadRecipesBySearchedOption()
         {
