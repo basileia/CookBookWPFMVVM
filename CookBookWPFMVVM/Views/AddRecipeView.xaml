@@ -26,15 +26,14 @@
         </Grid.ColumnDefinitions>
 
         <!-- Row 0 -->
-        <TextBlock Text="Name: " Grid.Column="0" Grid.Row="0" 
-               Margin="0, 0, 0, 10"/>
+        <TextBlock Text="Name: " Grid.Column="0" Grid.Row="0" Margin="0, 0, 0, 10"/>
         <TextBox x:Name="Name" Grid.Row="0" Grid.Column="1" Width="500" Margin="10, 0, 0, 10"/>
 
         <!-- Row 1 -->
         <TextBlock Text="Number of servings: " Grid.Column="0" Grid.Row="1"
                    Margin="0, 0, 0, 10" />
-        <TextBox Text="{Binding NumberOfServings, StringFormat={}{0:#}}" Grid.Row="1" Grid.Column="1" Width="500" 
-                   Margin="10, 0, 0, 10"/>
+        <TextBox Text="{Binding NumberOfServings, StringFormat={}{0:#}}" Grid.Row="1" 
+                 Grid.Column="1" Width="500" Margin="10, 0, 0, 10"/>
 
         <!--Row 2 -->
         <TextBlock Text="Ingredients: " Grid.Column="0" Grid.Row="2" Margin="0, 0, 0, 10" />
@@ -62,9 +61,12 @@
 
         <!-- Row 3 -->
         <TextBlock Text="Preparation: " Grid.Row="3" Grid.Column="0" Margin="0, 0, 0, 10" />
-        <TextBox x:Name="Preparation" Grid.Row="3" Grid.Column="1" Margin="10, 0, 0, 10" 
-                 Width="500" TextWrapping="Wrap" AcceptsReturn="True" />
-
+        <ScrollViewer Grid.Row="3" Grid.Column="1" HorizontalScrollBarVisibility="Auto" 
+                      Height="100" Margin="10, 0, 0, 10">
+            <TextBox x:Name="Preparation" Grid.Row="3" Grid.Column="1"  
+                     Width="500" TextWrapping="Wrap" AcceptsReturn="True" />
+        </ScrollViewer>
+ 
         <!-- Row 4 -->
         <TextBlock Text="Categories: " Grid.Row="4" Grid.Column="0" Margin="0, 0, 0, 10" />
 
@@ -87,6 +89,5 @@
                 </Style>
             </Button.Resources>
         </Button>
-
     </Grid>
 </UserControl>
