@@ -69,7 +69,7 @@ namespace CookBookWPFMVVM.Models
             {
                 foreach (IngredientModel ingredient in recipe.IngredientsList)
                 {
-                    if (ingredient.Name.ToLower() == searchedIngredient.ToLower())
+                    if (ingredient.Name.ToLower().Contains(searchedIngredient.ToLower()))
                     {
                         recipes.Add(recipe);
                     }
