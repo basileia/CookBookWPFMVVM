@@ -85,5 +85,36 @@ namespace CookBookWPFMVVM.Models
             return new BindableCollection<RecipeModel>(Recipes.Where(x => x.Categories.Contains(category)).ToList());
         }
 
+        public BindableCollection<RecipeModel> GenerateRandomMenu()
+        {
+            Random rnd = new Random();
+            BindableCollection<RecipeModel> randomMenu = new BindableCollection<RecipeModel>();
+
+            foreach (CategoryModel category in Enum.GetValues(typeof(CategoryModel)))
+            {
+                BindableCollection<RecipeModel> recipesByCategory = FindRecipesByCategory(category.ToString());
+
+                foreach (RecipeModel recipe in randomMenu)
+                {
+                    if (recipesByCategory.Contains(recipe))
+                    {
+                        recipesByCategory.Remove(recipe);
+                    }
+                }
+
+                if (recipesByCategory.Any())
+                {
+                    int randomIndex;
+                    randomIndex = rnd.Next(recipesByCategory.Count);
+                    randomMenu.Add(recipesByCategory[randomIndex]);
+                }
+                else
+                {
+                    randomMenu.Add(null);
+                }
+            }
+            return randomMenu;
+        }
+
     }
 }

@@ -9,8 +9,8 @@ namespace CookBookWPFMVVM.Models
     public enum CategoryModel
     {
         Snídaně = 1,
-        Svačina,
         Oběd,
+        Svačina,
         Večeře
     }
 }

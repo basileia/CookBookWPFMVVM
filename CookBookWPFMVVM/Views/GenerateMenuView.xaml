@@ -7,6 +7,20 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-            
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="10"/>
+        </Grid.RowDefinitions>
+       
+        <TextBlock Grid.Row="0" Grid.Column="0" Margin="20, 10, 0, 0" Background="White"
+                   FontWeight="Bold">
+            Menu for one day: 
+        </TextBlock>
+
+        <ListBox Grid.Row="1" Grid.Column="1" Background="White" Margin="30, 10, 0, 0"
+                 BorderThickness="0"
+             x:Name="RecipesToShow" DisplayMemberPath="Name" />
+
     </Grid>
 </UserControl>
