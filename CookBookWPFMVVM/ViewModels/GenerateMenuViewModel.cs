@@ -11,24 +11,27 @@ namespace CookBookWPFMVVM.ViewModels
     public class GenerateMenuViewModel : Screen
     {
         CookBookModel cookBook = new CookBookModel();
+        
 
-        public BindableCollection<RecipeModel> RecipesToShow
+        public BindableCollection<BindableCollection<RecipeModel>> RecipesToShow
         {
             get { return _recipesToShow; }
             set
             {
                 _recipesToShow = value;
                 NotifyOfPropertyChange(() => RecipesToShow);
+                
+                
             }
         }
 
-        public GenerateMenuViewModel(CookBookModel cookbook, BindableCollection<RecipeModel> generatedMenu)
+        public GenerateMenuViewModel(CookBookModel cookbook, BindableCollection<BindableCollection<RecipeModel>> generatedMenu)
         {
             cookBook = cookbook;
             RecipesToShow = generatedMenu;
         }
 
-        private BindableCollection<RecipeModel> _recipesToShow;
+        private BindableCollection<BindableCollection<RecipeModel>> _recipesToShow;
        
     }
 

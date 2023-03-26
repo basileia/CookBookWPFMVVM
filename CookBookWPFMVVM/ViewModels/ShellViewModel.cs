@@ -87,7 +87,7 @@ namespace CookBookWPFMVVM.ViewModels
 
         public void LoadGenerateMenuPage()
         {
-            BindableCollection<RecipeModel> generatedRecipes = GenerateMenu();
+            BindableCollection<BindableCollection<RecipeModel>> generatedRecipes = GenerateMenu();
             ActivateItem(new GenerateMenuViewModel(cookBook, generatedRecipes));
         }
        
@@ -135,7 +135,7 @@ namespace CookBookWPFMVVM.ViewModels
             return recipesToSort;
         }
 
-        public BindableCollection<RecipeModel> GenerateMenu()
+        public BindableCollection<BindableCollection<RecipeModel>> GenerateMenu()
         {
             return cookBook.GenerateRandomMenu();
         }

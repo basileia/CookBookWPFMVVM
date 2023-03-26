@@ -85,35 +85,45 @@ namespace CookBookWPFMVVM.Models
             return new BindableCollection<RecipeModel>(Recipes.Where(x => x.Categories.Contains(category)).ToList());
         }
 
-        public BindableCollection<RecipeModel> GenerateRandomMenu()
+        public BindableCollection<BindableCollection<RecipeModel>> GenerateRandomMenu()
         {
             Random rnd = new Random();
-            BindableCollection<RecipeModel> randomMenu = new BindableCollection<RecipeModel>();
-
-            foreach (CategoryModel category in Enum.GetValues(typeof(CategoryModel)))
-            {
-                BindableCollection<RecipeModel> recipesByCategory = FindRecipesByCategory(category.ToString());
-
-                foreach (RecipeModel recipe in randomMenu)
+            BindableCollection<BindableCollection<RecipeModel>> weekRandomMenu = new BindableCollection<BindableCollection<RecipeModel>>();
+            for(int i = 0; i < 5; i++) {
+                BindableCollection<RecipeModel> oneDayMenu = new BindableCollection<RecipeModel>();
+                foreach (CategoryModel category in Enum.GetValues(typeof(CategoryModel)))
                 {
-                    if (recipesByCategory.Contains(recipe))
+                    BindableCollection<RecipeModel> recipesByCategory = FindRecipesByCategory(category.ToString());
+                    foreach (RecipeModel recipe in oneDayMenu)
                     {
-                        recipesByCategory.Remove(recipe);
+                        if (recipesByCategory.Contains(recipe))
+                        {
+                            recipesByCategory.Remove(recipe);
+                        }
+                    }
+                    foreach (BindableCollection<RecipeModel> recipes in weekRandomMenu) { 
+                        foreach (RecipeModel recipe in recipes)
+                        {
+                            if (recipesByCategory.Contains(recipe))
+                            {
+                                recipesByCategory.Remove(recipe);
+                            }
+                        }
+                    }
+                    if (recipesByCategory.Any())
+                    {
+                        int randomIndex;
+                        randomIndex = rnd.Next(recipesByCategory.Count);
+                        oneDayMenu.Add(recipesByCategory[randomIndex]);
+                    }
+                    else
+                    {
+                        oneDayMenu.Add(new RecipeModel("Recept s touto kategorií není k dispozici"));
                     }
                 }
-
-                if (recipesByCategory.Any())
-                {
-                    int randomIndex;
-                    randomIndex = rnd.Next(recipesByCategory.Count);
-                    randomMenu.Add(recipesByCategory[randomIndex]);
-                }
-                else
-                {
-                    randomMenu.Add(null);
-                }
+                weekRandomMenu.Add(oneDayMenu);
             }
-            return randomMenu;
+            return weekRandomMenu;
         }
 
     }
