@@ -121,7 +121,15 @@ namespace CookBookWPFMVVM.Models
                         oneDayMenu.Add(new RecipeModel("Recept s touto kategorií není k dispozici"));
                     }
                 }
+                i++;
+                BindableCollection<RecipeModel> numbering = new BindableCollection<RecipeModel> { new RecipeModel(i.ToString()) };
+                weekRandomMenu.Add(numbering);
+                i--;
+
                 weekRandomMenu.Add(oneDayMenu);
+                BindableCollection<RecipeModel> emptyLine = new BindableCollection<RecipeModel> { new RecipeModel("") };
+                weekRandomMenu.Add(emptyLine);
+                
             }
             return weekRandomMenu;
         }

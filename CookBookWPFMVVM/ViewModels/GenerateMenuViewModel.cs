@@ -20,8 +20,6 @@ namespace CookBookWPFMVVM.ViewModels
             {
                 _recipesToShow = value;
                 NotifyOfPropertyChange(() => RecipesToShow);
-                
-                
             }
         }
 

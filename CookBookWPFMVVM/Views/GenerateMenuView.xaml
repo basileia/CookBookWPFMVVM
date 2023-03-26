@@ -15,7 +15,7 @@
        
         <TextBlock Grid.Row="0" Grid.Column="0" Margin="20, 10, 0, 0" Background="White"
                    FontWeight="Bold">
-            Menu for one day: 
+            Menu for 5 days: 
         </TextBlock>
 
         <ItemsControl x:Name="RecipesToShow" Grid.Row="1" Background="White" Margin="30, 10, 0, 0"
@@ -24,7 +24,7 @@
                 <DataTemplate>
                     <ItemsControl ItemsSource="{Binding}">
                         <ItemsControl.ItemTemplate>
-                            <DataTemplate>
+                            <DataTemplate>                                
                                 <TextBlock Text="{Binding Name}" />
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
