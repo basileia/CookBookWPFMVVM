@@ -12,26 +12,28 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="10"/>
         </Grid.RowDefinitions>
-       
+        
         <TextBlock Grid.Row="0" Grid.Column="0" Margin="20, 10, 0, 0" Background="White"
                    FontWeight="Bold">
             Menu for 5 days: 
         </TextBlock>
 
-        <ItemsControl x:Name="RecipesToShow" Grid.Row="1" Background="White" Margin="30, 10, 0, 0"
-                 BorderThickness="0">
+        <ItemsControl x:Name="RecipesToShow" Grid.Row="1" Margin="30, 10, 0, 0">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <ItemsControl ItemsSource="{Binding}">
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>                                
-                                <TextBlock Text="{Binding Name}" />
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
-                </DataTemplate>                
+                    <StackPanel>
+                        <TextBlock Text="{Binding Key}" Margin="0, 10, 0, 0"/>
+                        <ListBox ItemsSource="{Binding Value}" Background="White" 
+                                 BorderThickness="0">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Name}" />
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </StackPanel>
+                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
-   
     </Grid>
 </UserControl>

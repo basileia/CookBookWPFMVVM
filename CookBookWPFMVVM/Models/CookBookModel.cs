@@ -85,11 +85,13 @@ namespace CookBookWPFMVVM.Models
             return new BindableCollection<RecipeModel>(Recipes.Where(x => x.Categories.Contains(category)).ToList());
         }
 
-        public BindableCollection<BindableCollection<RecipeModel>> GenerateRandomMenu()
+        public BindableCollection<KeyValuePair> GenerateRandomMenu()
         {
             Random rnd = new Random();
-            BindableCollection<BindableCollection<RecipeModel>> weekRandomMenu = new BindableCollection<BindableCollection<RecipeModel>>();
-            for(int i = 0; i < 5; i++) {
+            BindableCollection<KeyValuePair> weekRandomMenu = new BindableCollection<KeyValuePair>();
+            
+            for (int i = 0; i < 5; i++)
+            {
                 BindableCollection<RecipeModel> oneDayMenu = new BindableCollection<RecipeModel>();
                 foreach (CategoryModel category in Enum.GetValues(typeof(CategoryModel)))
                 {
@@ -101,8 +103,10 @@ namespace CookBookWPFMVVM.Models
                             recipesByCategory.Remove(recipe);
                         }
                     }
-                    foreach (BindableCollection<RecipeModel> recipes in weekRandomMenu) { 
-                        foreach (RecipeModel recipe in recipes)
+             
+                    foreach (var recipes in weekRandomMenu)
+                    {
+                        foreach (RecipeModel recipe in recipes.Value)
                         {
                             if (recipesByCategory.Contains(recipe))
                             {
@@ -121,18 +125,16 @@ namespace CookBookWPFMVVM.Models
                         oneDayMenu.Add(new RecipeModel("Recept s touto kategorií není k dispozici"));
                     }
                 }
-                i++;
-                BindableCollection<RecipeModel> numbering = new BindableCollection<RecipeModel> { new RecipeModel(i.ToString()) };
-                weekRandomMenu.Add(numbering);
-                i--;
 
-                weekRandomMenu.Add(oneDayMenu);
-                BindableCollection<RecipeModel> emptyLine = new BindableCollection<RecipeModel> { new RecipeModel("") };
-                weekRandomMenu.Add(emptyLine);
-                
+                KeyValuePair randomMenu = new KeyValuePair
+                {
+                    Key = i + 1,
+                    Value = oneDayMenu
+                };
+
+                weekRandomMenu.Add(randomMenu);
             }
             return weekRandomMenu;
         }
-
     }
 }

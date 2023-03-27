@@ -1,7 +1,6 @@
 ﻿using Caliburn.Micro;
 using CookBookWPFMVVM.Models;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Windows;
@@ -87,10 +86,10 @@ namespace CookBookWPFMVVM.ViewModels
 
         public void LoadGenerateMenuPage()
         {
-            BindableCollection<BindableCollection<RecipeModel>> generatedRecipes = GenerateMenu();
+            BindableCollection<KeyValuePair> generatedRecipes = GenerateMenu();
             ActivateItem(new GenerateMenuViewModel(cookBook, generatedRecipes));
         }
-       
+
         public void LoadRecipesBySearchedOption()
         {
             if (SelectedSearchOption == "Ingredient")
@@ -135,10 +134,11 @@ namespace CookBookWPFMVVM.ViewModels
             return recipesToSort;
         }
 
-        public BindableCollection<BindableCollection<RecipeModel>> GenerateMenu()
+        public BindableCollection<KeyValuePair> GenerateMenu()
         {
             return cookBook.GenerateRandomMenu();
         }
+
 
     }
 }
