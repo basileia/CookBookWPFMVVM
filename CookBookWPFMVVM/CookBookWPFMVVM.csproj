@@ -102,11 +102,13 @@
     <Compile Include="DemoData.cs" />
     <Compile Include="Models\CategoryModel.cs" />
     <Compile Include="Models\CookBookModel.cs" />
+    <Compile Include="Models\GeneratedMenuModel.cs" />
     <Compile Include="Models\IngredientModel.cs" />
     <Compile Include="Models\KeyValuePair.cs" />
     <Compile Include="Models\RecipeModel.cs" />
     <Compile Include="ViewModels\AddIngredientViewModel.cs" />
     <Compile Include="ViewModels\AddRecipeViewModel.cs" />
+    <Compile Include="ViewModels\GeneratedMenusViewModel.cs" />
     <Compile Include="ViewModels\GenerateMenuViewModel.cs" />
     <Compile Include="ViewModels\RecipeViewModel.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />
@@ -115,6 +117,9 @@
     </Compile>
     <Compile Include="Views\AddRecipeView.xaml.cs">
       <DependentUpon>AddRecipeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\GeneratedMenusView.xaml.cs">
+      <DependentUpon>GeneratedMenusView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\GenerateMenuView.xaml.cs">
       <DependentUpon>GenerateMenuView.xaml</DependentUpon>
@@ -163,6 +168,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\AddRecipeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\GeneratedMenusView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

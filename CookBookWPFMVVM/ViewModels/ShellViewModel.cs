@@ -10,7 +10,8 @@ namespace CookBookWPFMVVM.ViewModels
     public class ShellViewModel : Conductor<object>
     {
         public static string sourceDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "CookBook");
-        public static string sourceFile = Path.Combine(sourceDirectory, "recipes.json");
+        public static string sourceFileRecipes = Path.Combine(sourceDirectory, "recipes.json");
+        public static string sourceFileMenus = Path.Combine(sourceDirectory, "menus.json");
 
         public BindableCollection<string> SearchOptions
         {
@@ -75,7 +76,8 @@ namespace CookBookWPFMVVM.ViewModels
         public ShellViewModel()
         {
             cookBook = new CookBookModel();
-            cookBook.Recipes = CookBookModel.LoadRecipesFromJson(sourceFile);
+            cookBook.Recipes = CookBookModel.LoadRecipesFromJson(sourceFileRecipes);
+            cookBook.GeneratedMenus = CookBookModel.LoadMenusFromJson(sourceFileMenus);
             LoadAllRecipes();
         }
 
@@ -86,10 +88,16 @@ namespace CookBookWPFMVVM.ViewModels
 
         public void LoadGenerateMenuPage()
         {
-            BindableCollection<KeyValuePair> generatedRecipes = GenerateMenu();
+            GeneratedMenuModel generatedRecipes = GenerateMenu();
+            CookBookModel.PutMenusToJson(cookBook, ShellViewModel.sourceDirectory, ShellViewModel.sourceFileMenus);
             ActivateItem(new GenerateMenuViewModel(cookBook, generatedRecipes));
         }
 
+        public void LoadGeneratedMenusPage()
+        {
+            ActivateItem(new GeneratedMenusViewModel(cookBook.GeneratedMenus));
+        }
+        
         public void LoadRecipesBySearchedOption()
         {
             if (SelectedSearchOption == "Ingredient")
@@ -134,11 +142,12 @@ namespace CookBookWPFMVVM.ViewModels
             return recipesToSort;
         }
 
-        public BindableCollection<KeyValuePair> GenerateMenu()
+        public GeneratedMenuModel GenerateMenu()
         {
             return cookBook.GenerateRandomMenu();
         }
 
+        
 
     }
 }

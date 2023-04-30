@@ -32,6 +32,10 @@
                         BorderThickness="0" Background="Transparent" 
                         x:Name="LoadGenerateMenuPage"
                         Margin="7, 5, 7, 5" VerticalAlignment="Center"/>
+                <Button Content="Generated Menus" x:Name="LoadGeneratedMenusPage"
+                        BorderThickness="0" Background="Transparent" 
+                        
+                        Margin="7, 5, 7, 5" VerticalAlignment="Center"/>
                 <Button Content="Shopping List" BorderThickness="0" 
                         Background="Transparent" Margin="7, 5, 7, 5" 
                         VerticalAlignment="Center"/>

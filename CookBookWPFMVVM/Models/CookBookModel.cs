@@ -12,10 +12,11 @@ namespace CookBookWPFMVVM.Models
     public class CookBookModel
     {
         public BindableCollection<RecipeModel> Recipes { get; set; }
+        public BindableCollection<GeneratedMenuModel> GeneratedMenus { get; set; }
 
         public CookBookModel()
         {
-            
+            GeneratedMenus = new BindableCollection<GeneratedMenuModel>();
         }
         
         public void AddRecipeToCookBook(string name, int numberOfServings, string preparation, BindableCollection<IngredientModel> ingredients, BindableCollection<string> categories)
@@ -46,10 +47,40 @@ namespace CookBookWPFMVVM.Models
             
         }
 
+        public static BindableCollection<GeneratedMenuModel> LoadMenusFromJson(string filePath)
+        {
+            if (File.Exists(filePath))
+            {
+                var fileContent = File.ReadAllText(filePath);
+                List<GeneratedMenuModel> menusList = JsonConvert.DeserializeObject<List<GeneratedMenuModel>>(fileContent);
+                BindableCollection<GeneratedMenuModel> menus = new BindableCollection<GeneratedMenuModel>();
+                menusList.ForEach(x => menus.Add(x));
+                return menus;
+            }
+            return new BindableCollection<GeneratedMenuModel>();
+
+        }
+
         public static void PutRecipesToJson(CookBookModel cookbook, string sourceDirectory, string filePath)
         {
             AuxiliaryMethod.CreateDirectory(sourceDirectory);
             if (cookbook.Recipes.Any() || File.Exists(filePath))
+            {                         
+                    using (StreamWriter file = File.CreateText(filePath))
+                    {
+                        JsonSerializer serializer = new JsonSerializer
+                        {
+                            Formatting = Formatting.Indented
+                        };
+                        serializer.Serialize(file, cookbook.Recipes);
+                    }
+            }
+        }
+
+        public static void PutMenusToJson(CookBookModel cookbook, string sourceDirectory, string filePath)
+        {
+            AuxiliaryMethod.CreateDirectory(sourceDirectory);
+            if (cookbook.GeneratedMenus.Any() || File.Exists(filePath))
             {
                 using (StreamWriter file = File.CreateText(filePath))
                 {
@@ -57,7 +88,7 @@ namespace CookBookWPFMVVM.Models
                     {
                         Formatting = Formatting.Indented
                     };
-                    serializer.Serialize(file, cookbook.Recipes);
+                    serializer.Serialize(file, cookbook.GeneratedMenus);
                 }
             }
         }
@@ -85,11 +116,12 @@ namespace CookBookWPFMVVM.Models
             return new BindableCollection<RecipeModel>(Recipes.Where(x => x.Categories.Contains(category)).ToList());
         }
 
-        public BindableCollection<KeyValuePair> GenerateRandomMenu()
+        
+        public GeneratedMenuModel GenerateRandomMenu()
         {
             Random rnd = new Random();
             BindableCollection<KeyValuePair> weekRandomMenu = new BindableCollection<KeyValuePair>();
-            
+
             for (int i = 0; i < 5; i++)
             {
                 BindableCollection<RecipeModel> oneDayMenu = new BindableCollection<RecipeModel>();
@@ -103,7 +135,7 @@ namespace CookBookWPFMVVM.Models
                             recipesByCategory.Remove(recipe);
                         }
                     }
-             
+
                     foreach (var recipes in weekRandomMenu)
                     {
                         foreach (RecipeModel recipe in recipes.Value)
@@ -129,12 +161,33 @@ namespace CookBookWPFMVVM.Models
                 KeyValuePair randomMenu = new KeyValuePair
                 {
                     Key = i + 1,
-                    Value = oneDayMenu
+                    Value = oneDayMenu,
                 };
 
                 weekRandomMenu.Add(randomMenu);
             }
-            return weekRandomMenu;
+
+            GeneratedMenuModel weekMenuModel = new GeneratedMenuModel
+            {
+                DateAndTime = DateTime.Now,
+                WeekMenu = weekRandomMenu
+            };
+            GeneratedMenus.Add(weekMenuModel);
+            return weekMenuModel;
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 }

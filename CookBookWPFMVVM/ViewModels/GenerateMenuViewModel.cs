@@ -1,10 +1,5 @@
 ﻿using Caliburn.Micro;
 using CookBookWPFMVVM.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CookBookWPFMVVM.ViewModels
 {
@@ -12,10 +7,10 @@ namespace CookBookWPFMVVM.ViewModels
     {
         CookBookModel cookBook = new CookBookModel();
 
-        public GenerateMenuViewModel(CookBookModel cookbook, BindableCollection<KeyValuePair> generatedMenu)
+        public GenerateMenuViewModel(CookBookModel cookbook, GeneratedMenuModel generatedMenu)
         {
             cookBook = cookbook;
-            RecipesToShow = generatedMenu;
+            RecipesToShow = generatedMenu.WeekMenu;
         }
 
         private BindableCollection<KeyValuePair> _recipesToShow;

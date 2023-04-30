@@ -114,20 +114,15 @@ namespace CookBookWPFMVVM.ViewModels
                 else
                 {
                     cookBook.AddRecipeToCookBook(Name, NumberOfServings, Preparation, Ingredients, Categories);
-                    CookBookModel.PutRecipesToJson(cookBook, ShellViewModel.sourceDirectory, ShellViewModel.sourceFile);
-
+                    CookBookModel.PutRecipesToJson(cookBook, ShellViewModel.sourceDirectory, ShellViewModel.sourceFileRecipes);
+                    
                     Name = "";
                     Preparation = "";
                     NumberOfServings = 0;
                     Ingredients = new BindableCollection<IngredientModel>();
                     Categories = new BindableCollection<string>();
                 }
-                
             }
         }
-
-        
-
-
     }
 }
