@@ -14,9 +14,11 @@ namespace CookBookWPFMVVM.Models
         public BindableCollection<RecipeModel> Recipes { get; set; }
         public BindableCollection<GeneratedMenuModel> GeneratedMenus { get; set; }
 
+        public GeneratedMenuModel LastGeneratedMenu { get; set; }
+
         public CookBookModel()
         {
-            GeneratedMenus = new BindableCollection<GeneratedMenuModel>();
+            LastGeneratedMenu = new GeneratedMenuModel();
         }
         
         public void AddRecipeToCookBook(string name, int numberOfServings, string preparation, BindableCollection<IngredientModel> ingredients, BindableCollection<string> categories)
@@ -47,17 +49,15 @@ namespace CookBookWPFMVVM.Models
             
         }
 
-        public static BindableCollection<GeneratedMenuModel> LoadMenusFromJson(string filePath)
+        public static GeneratedMenuModel LoadMenuFromJson(string filePath)
         {
             if (File.Exists(filePath))
             {
                 var fileContent = File.ReadAllText(filePath);
-                List<GeneratedMenuModel> menusList = JsonConvert.DeserializeObject<List<GeneratedMenuModel>>(fileContent);
-                BindableCollection<GeneratedMenuModel> menus = new BindableCollection<GeneratedMenuModel>();
-                menusList.ForEach(x => menus.Add(x));
-                return menus;
+                GeneratedMenuModel lastGeneratedMenu = JsonConvert.DeserializeObject<GeneratedMenuModel>(fileContent);
+                return lastGeneratedMenu;
             }
-            return new BindableCollection<GeneratedMenuModel>();
+            return new GeneratedMenuModel();
 
         }
 
@@ -80,7 +80,7 @@ namespace CookBookWPFMVVM.Models
         public static void PutMenusToJson(CookBookModel cookbook, string sourceDirectory, string filePath)
         {
             AuxiliaryMethod.CreateDirectory(sourceDirectory);
-            if (cookbook.GeneratedMenus.Any() || File.Exists(filePath))
+            if (!cookbook.LastGeneratedMenu.Equals(null) || File.Exists(filePath))
             {
                 using (StreamWriter file = File.CreateText(filePath))
                 {
@@ -88,7 +88,7 @@ namespace CookBookWPFMVVM.Models
                     {
                         Formatting = Formatting.Indented
                     };
-                    serializer.Serialize(file, cookbook.GeneratedMenus);
+                    serializer.Serialize(file, cookbook.LastGeneratedMenu);
                 }
             }
         }
@@ -172,7 +172,7 @@ namespace CookBookWPFMVVM.Models
                 DateAndTime = DateTime.Now,
                 WeekMenu = weekRandomMenu
             };
-            GeneratedMenus.Add(weekMenuModel);
+            LastGeneratedMenu = weekMenuModel;
             return weekMenuModel;
         }
 

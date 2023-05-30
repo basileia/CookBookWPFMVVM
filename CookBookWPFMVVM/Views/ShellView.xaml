@@ -32,7 +32,7 @@
                         BorderThickness="0" Background="Transparent" 
                         x:Name="LoadGenerateMenuPage"
                         Margin="7, 5, 7, 5" VerticalAlignment="Center"/>
-                <Button Content="Generated Menus" x:Name="LoadGeneratedMenusPage"
+                <Button Content="The Last Generated Menu" x:Name="LoadGeneratedMenuPage"
                         BorderThickness="0" Background="Transparent" 
                         
                         Margin="7, 5, 7, 5" VerticalAlignment="Center"/>

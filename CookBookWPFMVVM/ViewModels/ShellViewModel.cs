@@ -77,7 +77,7 @@ namespace CookBookWPFMVVM.ViewModels
         {
             cookBook = new CookBookModel();
             cookBook.Recipes = CookBookModel.LoadRecipesFromJson(sourceFileRecipes);
-            cookBook.GeneratedMenus = CookBookModel.LoadMenusFromJson(sourceFileMenus);
+            cookBook.LastGeneratedMenu = CookBookModel.LoadMenuFromJson(sourceFileMenus);   
             LoadAllRecipes();
         }
 
@@ -90,12 +90,18 @@ namespace CookBookWPFMVVM.ViewModels
         {
             GeneratedMenuModel generatedRecipes = GenerateMenu();
             CookBookModel.PutMenusToJson(cookBook, ShellViewModel.sourceDirectory, ShellViewModel.sourceFileMenus);
-            ActivateItem(new GenerateMenuViewModel(cookBook, generatedRecipes));
+            ActivateItem(new GenerateMenuViewModel(generatedRecipes));
         }
 
-        public void LoadGeneratedMenusPage()
+        public void LoadGeneratedMenuPage()
         {
-            ActivateItem(new GeneratedMenusViewModel(cookBook.GeneratedMenus));
+            
+            if (cookBook.LastGeneratedMenu.DateAndTime == new DateTime())
+            {
+                MessageBox.Show("No menu has been generated yet");
+            }
+            
+            ActivateItem(new GenerateMenuViewModel(cookBook.LastGeneratedMenu));
         }
         
         public void LoadRecipesBySearchedOption()
