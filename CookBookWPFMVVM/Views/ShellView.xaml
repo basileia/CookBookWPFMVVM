@@ -33,12 +33,8 @@
                         x:Name="LoadGenerateMenuPage"
                         Margin="7, 5, 7, 5" VerticalAlignment="Center"/>
                 <Button Content="The Last Generated Menu" x:Name="LoadGeneratedMenuPage"
-                        BorderThickness="0" Background="Transparent" 
-                        
+                        BorderThickness="0" Background="Transparent"          
                         Margin="7, 5, 7, 5" VerticalAlignment="Center"/>
-                <Button Content="Shopping List" BorderThickness="0" 
-                        Background="Transparent" Margin="7, 5, 7, 5" 
-                        VerticalAlignment="Center"/>
                 <Button Content="Add a Recipe" BorderThickness="0"
                         x:Name="LoadAddRecipePage"
                         Background="Transparent" Margin="7, 5, 7, 5" 
