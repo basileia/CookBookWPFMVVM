@@ -7,11 +7,18 @@ using System.Windows;
 
 namespace CookBookWPFMVVM.ViewModels
 {
-    public class AddRecipeViewModel : Screen
-    {
+    public class AddRecipeViewModel : BaseViewModel
+    {        
+        private readonly CookBookModel cookBook = new CookBookModel();
+        private readonly IWindowManager manager = new WindowManager();
         
-        CookBookModel cookBook = new CookBookModel();
-        readonly IWindowManager manager = new WindowManager();
+        private string _name;
+        private int _numberOfServings;
+        private string _preparation;
+        private string _selectedCategory;
+        private string _selectedCategoryToRemove;
+        private BindableCollection<IngredientModel> _ingredients = new BindableCollection<IngredientModel>();
+        private BindableCollection<string> _categories = new BindableCollection<string>();
         public AddRecipeViewModel(CookBookModel cookbook)
         {
             cookBook = cookbook;
@@ -44,6 +51,7 @@ namespace CookBookWPFMVVM.ViewModels
             {
                 _name = value;
                 NotifyOfPropertyChange(() => Name);
+                ValidateProperty("Name", Name, AuxiliaryMethod.ValidString);
             }
         }
         public int NumberOfServings
@@ -53,6 +61,7 @@ namespace CookBookWPFMVVM.ViewModels
             {
                 _numberOfServings = value;
                 NotifyOfPropertyChange(() => NumberOfServings);
+                ValidateProperty("NumberOfServings", (double)NumberOfServings, AuxiliaryMethod.ValidUserNumber);
             }
         }
         public string Preparation
@@ -62,6 +71,7 @@ namespace CookBookWPFMVVM.ViewModels
             {
                 _preparation = value;
                 NotifyOfPropertyChange(() => Preparation);
+                ValidateProperty("Preparation", Preparation, AuxiliaryMethod.ValidString);
             }
         }
         public string SelectedCategory
@@ -87,42 +97,30 @@ namespace CookBookWPFMVVM.ViewModels
                 Categories.Remove(_selectedCategoryToRemove);
                 NotifyOfPropertyChange(() => SelectedCategoryToRemove);
             }
-        }
+        }        
 
-        private BindableCollection<IngredientModel> _ingredients = new BindableCollection<IngredientModel>();
-        private BindableCollection<string> _categories = new BindableCollection<string>();
-        private string _name;
-        private int _numberOfServings;
-        private string _preparation;
-        private string _selectedCategory;
-        private string _selectedCategoryToRemove;
-  
-        
         public void AddIngredientWindow()
         {
 
             manager.ShowWindow(new AddIngredientViewModel(Ingredients), null, null);
         }
         
-        public void AddRecipe()
+        public void AddRecipe() //name unique doplnit
         {
-            if (AuxiliaryMethod.ValidString(Name) && AuxiliaryMethod.ValidUserNumber(NumberOfServings) && AuxiliaryMethod.ValidString(Preparation))
+            if (!HasErrors)
             {
-                if (cookBook.Recipes.Any(p => p.Name.ToLower() == Name.ToLower()))
-                {
-                    MessageBox.Show("A recipe with this name already exists");
-                }
-                else
-                {
-                    cookBook.AddRecipeToCookBook(Name, NumberOfServings, Preparation, Ingredients, Categories);
-                    CookBookModel.PutRecipesToJson(cookBook, ShellViewModel.sourceDirectory, ShellViewModel.sourceFileRecipes);
-                    
-                    Name = "";
-                    Preparation = "";
-                    NumberOfServings = 0;
-                    Ingredients = new BindableCollection<IngredientModel>();
-                    Categories = new BindableCollection<string>();
-                }
+                cookBook.AddRecipeToCookBook(Name, NumberOfServings, Preparation, Ingredients, Categories);
+                CookBookModel.PutRecipesToJson(cookBook, ShellViewModel.sourceDirectory, ShellViewModel.sourceFileRecipes);
+
+                Name = "";
+                Preparation = "";
+                NumberOfServings = 0;
+                Ingredients = new BindableCollection<IngredientModel>();
+                Categories = new BindableCollection<string>();
+            }
+            else
+            {
+                MessageBox.Show("Please correct the errors before adding the recipe.");
             }
         }
     }

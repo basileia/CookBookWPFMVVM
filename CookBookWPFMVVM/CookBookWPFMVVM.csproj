@@ -111,6 +111,7 @@
     <Compile Include="Models\RecipeModel.cs" />
     <Compile Include="ViewModels\AddIngredientViewModel.cs" />
     <Compile Include="ViewModels\AddRecipeViewModel.cs" />
+    <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\GenerateMenuViewModel.cs" />
     <Compile Include="ViewModels\RecipeViewModel.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />

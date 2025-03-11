@@ -1,45 +1,47 @@
-﻿using System;
+﻿using CookBookWPFMVVM.Models;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
 
 namespace CookBookWPFMVVM.Infrastructure.Helpers
 
 {
     public class AuxiliaryMethod
     {
-        public static bool ValidUserNumber(double number)
+        public static string ValidUserNumber(double number)
         {
-            
             if (number <= 0)
             {
                 if (number % 1 == 0)
                 {
-                    MessageBox.Show("The number must be an integer greater than zero");
+                    return "The number must be an integer greater than zero.";
                 }
-
                 else
                 {
-                    MessageBox.Show("The number must be greater than zero");
+                    return "The number must be greater than zero.";
                 }
-                
-                return false;
             }
-            return true;
+            return null; 
         }
 
-        public static bool ValidString(string text)
+        public static string ValidString(string text)
         {
             if (string.IsNullOrWhiteSpace(text))
             {
-                MessageBox.Show("The text is missing");
-                return false;
+                return "The text is missing.";
             }
-            return true;
+            return null;
+        }
+
+        public static string IsNameUnique(string name, List<RecipeModel> existingRecipes)
+        {
+            if (existingRecipes.Any(recipe => recipe.Name.Equals(name, StringComparison.OrdinalIgnoreCase)))
+            {
+                return "A recipe with this name already exists.";
+
+            }
+            return null;
         }
 
         public static void CreateDirectory(string sourceDirectory)
