@@ -18,9 +18,7 @@ namespace CookBookWPFMVVM.Models
         public RecipeModel(string name)
         {
             Name = name;
-        }
-
-          
+        }    
         
     }
 }

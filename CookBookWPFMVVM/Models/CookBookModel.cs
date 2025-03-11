@@ -4,8 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CookBookWPFMVVM.Models
 {
@@ -175,19 +173,5 @@ namespace CookBookWPFMVVM.Models
             LastGeneratedMenu = weekMenuModel;
             return weekMenuModel;
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
 }

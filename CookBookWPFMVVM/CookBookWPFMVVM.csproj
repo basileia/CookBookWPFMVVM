@@ -100,6 +100,7 @@
     </Compile>
     <Compile Include="AuxiliaryMethod.cs" />
     <Compile Include="DemoData.cs" />
+    <Compile Include="Infrastructure\Results\OperationResult.cs" />
     <Compile Include="Models\CategoryModel.cs" />
     <Compile Include="Models\CookBookModel.cs" />
     <Compile Include="Models\GeneratedMenuModel.cs" />
