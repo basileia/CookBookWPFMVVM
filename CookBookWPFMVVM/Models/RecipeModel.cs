@@ -1,14 +1,11 @@
 ﻿using Caliburn.Micro;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 
 namespace CookBookWPFMVVM.Models
 {
     public class RecipeModel
     {
+        [Required(ErrorMessage = "Name is required.")]
         public string Name { get; set; }
         public int NumberOfServings { get; set; }
         public string Preparation { get; set; }

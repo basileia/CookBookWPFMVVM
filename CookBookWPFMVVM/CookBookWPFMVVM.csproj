@@ -66,6 +66,7 @@
       <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Runtime.Serialization.Primitives, Version=4.1.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -98,8 +99,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="AuxiliaryMethod.cs" />
     <Compile Include="DemoData.cs" />
+    <Compile Include="Infrastructure\Helpers\AuxiliaryMethod.cs" />
     <Compile Include="Infrastructure\Interfaces\IDialogService.cs" />
     <Compile Include="Infrastructure\Results\OperationResult.cs" />
     <Compile Include="Models\CategoryModel.cs" />

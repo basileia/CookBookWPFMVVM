@@ -1,4 +1,5 @@
 ﻿using Caliburn.Micro;
+using CookBookWPFMVVM.Infrastructure.Helpers;
 using CookBookWPFMVVM.Models;
 
 namespace CookBookWPFMVVM.ViewModels

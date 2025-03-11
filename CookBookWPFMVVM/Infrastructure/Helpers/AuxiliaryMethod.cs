@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace CookBookWPFMVVM
+namespace CookBookWPFMVVM.Infrastructure.Helpers
+
 {
     public class AuxiliaryMethod
     {
