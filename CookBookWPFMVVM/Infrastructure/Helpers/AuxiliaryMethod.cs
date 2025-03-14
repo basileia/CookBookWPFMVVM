@@ -34,12 +34,11 @@ namespace CookBookWPFMVVM.Infrastructure.Helpers
             return null;
         }
 
-        public static string IsNameUnique(string name, List<RecipeModel> existingRecipes)
+        public static string IsNameUnique(string name, IEnumerable<RecipeModel> existingRecipes)
         {
-            if (existingRecipes.Any(recipe => recipe.Name.Equals(name, StringComparison.OrdinalIgnoreCase)))
+            if (existingRecipes.Any(recipe => !string.IsNullOrWhiteSpace(recipe.Name) && recipe.Name.Equals(name, StringComparison.OrdinalIgnoreCase)))
             {
                 return "A recipe with this name already exists.";
-
             }
             return null;
         }

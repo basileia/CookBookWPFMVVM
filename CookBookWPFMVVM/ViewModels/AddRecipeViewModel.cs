@@ -52,6 +52,7 @@ namespace CookBookWPFMVVM.ViewModels
                 _name = value;
                 NotifyOfPropertyChange(() => Name);
                 ValidateProperty("Name", Name, AuxiliaryMethod.ValidString);
+                ValidatePropertyWithList("Name", Name, cookBook.Recipes, AuxiliaryMethod.IsNameUnique);
             }
         }
         public int NumberOfServings
@@ -105,7 +106,7 @@ namespace CookBookWPFMVVM.ViewModels
             manager.ShowWindow(new AddIngredientViewModel(Ingredients), null, null);
         }
         
-        public void AddRecipe() //name unique doplnit
+        public void AddRecipe() 
         {
             if (!HasErrors)
             {

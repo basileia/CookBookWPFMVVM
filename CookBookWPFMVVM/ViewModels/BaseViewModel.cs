@@ -34,5 +34,18 @@ namespace CookBookWPFMVVM.ViewModels
 
             ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(propertyName));
         }
+
+        protected void ValidatePropertyWithList<T, U>(string propertyName, T value, U list, Func<T, U, string> validationMethod)
+        {
+            _errors.Remove(propertyName);
+            string errorMessage = validationMethod(value, list);
+
+            if (errorMessage != null)
+            {
+                _errors[propertyName] = new List<string> { errorMessage };
+            }
+
+            ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(propertyName));
+        }
     }
 }
