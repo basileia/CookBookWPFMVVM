@@ -36,8 +36,11 @@
         <!-- Row 1 -->
         <TextBlock Text="Number of servings: " Grid.Column="0" Grid.Row="1"
                    Margin="0, 0, 0, 10" />
-        <TextBox Text="{Binding NumberOfServings, StringFormat={}{0:#}}" Grid.Row="1" 
-                 Grid.Column="1" Width="500" Margin="10, 0, 0, 10"/>
+        <TextBox x:Name="NumberOfServings"
+         Text="{Binding NumberOfServings, UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True, StringFormat={}{0:#}}"
+         Grid.Row="1" Grid.Column="1"
+         Width="500" Margin="10, 0, 0, 10"
+         ToolTip="{Binding (Validation.Errors).CurrentItem.ErrorContent, RelativeSource={RelativeSource Self}}"/>
 
         <!--Row 2 -->
         <TextBlock Text="Ingredients: " Grid.Column="0" Grid.Row="2" Margin="0, 0, 0, 10" />
@@ -66,11 +69,16 @@
         <!-- Row 3 -->
         <TextBlock Text="Preparation: " Grid.Row="3" Grid.Column="0" Margin="0, 0, 0, 10" />
         <ScrollViewer Grid.Row="3" Grid.Column="1" HorizontalScrollBarVisibility="Auto" 
-                      Height="100" Margin="10, 0, 0, 10">
-            <TextBox x:Name="Preparation" Grid.Row="3" Grid.Column="1"  
-                     Width="500" TextWrapping="Wrap" AcceptsReturn="True" />
+              Height="100" Margin="10, 0, 0, 10">
+            <Border BorderBrush="Transparent" BorderThickness="2" Margin="0,0,0,0">
+                <TextBox x:Name="Preparation"
+                        Grid.Row="3" Grid.Column="1"
+                        Width="500" TextWrapping="Wrap" AcceptsReturn="True"
+                        Text="{Binding Preparation, UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True}"
+                        Style="{StaticResource ValidationTextBoxStyle}" />
+            </Border>
         </ScrollViewer>
- 
+
         <!-- Row 4 -->
         <TextBlock Text="Categories: " Grid.Row="4" Grid.Column="0" Margin="0, 0, 0, 10" />
 
