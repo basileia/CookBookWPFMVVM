@@ -22,30 +22,28 @@ namespace CookBookWPFMVVM.ViewModels
             return _errors[propertyName];
         }
 
-        protected void ValidateProperty<T>(string propertyName, T value, Func<T, string> validationMethod)
+        protected void SetError(string propertyName, string errorMessage)
         {
-            _errors.Remove(propertyName);
-            string errorMessage = validationMethod(value);
-
             if (!string.IsNullOrEmpty(errorMessage))
             {
                 _errors[propertyName] = new List<string> { errorMessage };
+            }
+            else
+            {
+                _errors.Remove(propertyName);
             }
 
             ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(propertyName));
         }
 
+        protected void ValidateProperty<T>(string propertyName, T value, Func<T, string> validationMethod)
+        {
+            SetError(propertyName, validationMethod(value));
+        }
+
         protected void ValidatePropertyWithList<T, U>(string propertyName, T value, U list, Func<T, U, string> validationMethod)
         {
-            _errors.Remove(propertyName);
-            string errorMessage = validationMethod(value, list);
-
-            if (errorMessage != null)
-            {
-                _errors[propertyName] = new List<string> { errorMessage };
-            }
-
-            ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(propertyName));
+            SetError(propertyName, validationMethod(value, list));
         }
     }
 }

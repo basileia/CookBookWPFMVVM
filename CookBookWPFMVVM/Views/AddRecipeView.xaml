@@ -27,7 +27,11 @@
 
         <!-- Row 0 -->
         <TextBlock Text="Name: " Grid.Column="0" Grid.Row="0" Margin="0, 0, 0, 10"/>
-        <TextBox x:Name="Name" Grid.Row="0" Grid.Column="1" Width="500" Margin="10, 0, 0, 10"/>
+        <TextBox x:Name="Name"
+         Text="{Binding Name, UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True}"
+         Grid.Row="0" Grid.Column="1"
+         Width="500" Margin="10, 0, 0, 10"
+         ToolTip="{Binding (Validation.Errors).CurrentItem.ErrorContent, RelativeSource={RelativeSource Self}}"/>
 
         <!-- Row 1 -->
         <TextBlock Text="Number of servings: " Grid.Column="0" Grid.Row="1"
