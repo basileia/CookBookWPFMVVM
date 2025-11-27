@@ -3,8 +3,8 @@ It’s a personal project for learning and practicing Windows app design princip
 
 ## Screenshots
 
-![Recipe detail](Screenshots/Detail receptu.png)  
+![Recipe detail](Screenshots/recipe-detail.png)  
 Window with recipe detail.
 
-![Add new recipe](Screenshots/Přidání nového receptu.png)  
+![Add new recipe](Screenshots/add-new-recipe.png)  
 Example of implemented feature - add new recipe.
